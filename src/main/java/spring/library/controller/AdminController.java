@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.library.controller.request.MemberRequest;
 import spring.library.controller.response.MemberResponse;
-import spring.library.domain.Member;
 import spring.library.dto.MemberDto;
 import spring.library.repository.MemberRepository;
 import spring.library.service.MemberService;
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-public class MemberController {
+public class AdminController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
 
@@ -49,4 +48,7 @@ public class MemberController {
         MemberDto memberDto = memberService.update(id, memberRequest);
         return ResponseEntity.ok().body(MemberResponse.from(memberDto));
     }
+
+
+
 }
