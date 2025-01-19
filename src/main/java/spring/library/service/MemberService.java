@@ -1,5 +1,6 @@
 package spring.library.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.library.controller.request.MemberRequest;
@@ -25,5 +26,17 @@ public class MemberService {
 
     public void deleteById(Long id) {
         memberRepository.deleteById(id);
+    }
+
+    public MemberDto findById(Long id) {
+        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No member"));
+        return MemberDto.from(member);
+    }
+
+    @Transactional
+    public MemberDto update(Long id, MemberRequest memberRequest) {
+        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No Member"));
+        member.update(MemberDto.from(memberRequest));
+        return MemberDto.from(member);
     }
 }
