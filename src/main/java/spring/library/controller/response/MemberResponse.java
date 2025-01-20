@@ -8,12 +8,18 @@ import spring.library.dto.MemberDto;
 @Builder
 public class MemberResponse {
     private String name;
-    private int age;
+    private String idNumber;
+    private String feature;
+    private String email;
+    private String phoneNumber;
 
     public static MemberResponse from(MemberDto memberDto) {
         return MemberResponse.builder()
                 .name(memberDto.getName())
-                .age(memberDto.getAge())
+                .idNumber(memberDto.getIdNumber())
+                .feature(memberDto.getFeature())
+                .email(memberDto.getEmail())
+                .phoneNumber(memberDto.getPhoneNumber())
                 .build();
     }
 }

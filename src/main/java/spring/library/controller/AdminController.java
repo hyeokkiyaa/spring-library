@@ -14,10 +14,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/admin")
 public class AdminController {
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
 
     @GetMapping("/members")
     public ResponseEntity<List<MemberResponse>> showAllMembers() {
@@ -31,19 +29,19 @@ public class AdminController {
         return ResponseEntity.ok().body(MemberResponse.from(memberDto));
     }
 
-    @PostMapping("/add")
+    @PostMapping("/members")
     public ResponseEntity<MemberResponse> addMember(@RequestBody MemberRequest memberRequest) {
         MemberDto memberDto = memberService.save(memberRequest);
         return ResponseEntity.ok().body(MemberResponse.from(memberDto));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/members/{id}")
     public ResponseEntity<MemberResponse> deleteMember(@PathVariable Long id) {
         memberService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/member/{id}")
+    @PutMapping("/members/{id}")
     public ResponseEntity<MemberResponse> updateMember(@PathVariable Long id, @RequestBody MemberRequest memberRequest) {
         MemberDto memberDto = memberService.update(id, memberRequest);
         return ResponseEntity.ok().body(MemberResponse.from(memberDto));

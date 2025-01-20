@@ -20,25 +20,37 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
     private String name;
-    private int age;
+    private String idNumber;
+    private String feature;
+    private String email;
+    private String phoneNumber;
 
     public static Member from(MemberRequest memberRequest) {
         return Member.builder()
                 .name(memberRequest.getName())
-                .age(memberRequest.getAge())
+                .idNumber(memberRequest.getIdNumber())
+                .feature(memberRequest.getFeature())
+                .email(memberRequest.getEmail())
+                .phoneNumber(memberRequest.getPhoneNumber())
                 .books(new ArrayList<>())
                 .build();
     }
 
     public Member(MemberDto memberDto) {
         this.name = memberDto.getName();
-        this.age = memberDto.getAge();
+        this.idNumber = memberDto.getIdNumber();
+        this.feature = memberDto.getFeature();
+        this.email = memberDto.getEmail();
+        this.phoneNumber = memberDto.getPhoneNumber();
         this.books = new ArrayList<>();
     }
 
     public void update(MemberDto memberDto) {
         this.name = memberDto.getName();
-        this.age = memberDto.getAge();
+        this.idNumber = memberDto.getIdNumber();
+        this.feature = memberDto.getFeature();
+        this.email = memberDto.getEmail();
+        this.phoneNumber = memberDto.getPhoneNumber();
     }
 
     @OneToMany(

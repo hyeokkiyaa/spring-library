@@ -13,20 +13,29 @@ import spring.library.domain.Member;
 public class MemberDto {
     private Long id;
     private String name;
-    private int age;
+    private String idNumber;
+    private String feature;
+    private String email;
+    private String phoneNumber;
 
     public static MemberDto from(Member member) {
         return MemberDto.builder()
                 .id(member.getId())
                 .name(member.getName())
-                .age(member.getAge())
+                .idNumber(member.getIdNumber())
+                .feature(member.getFeature())
+                .email(member.getEmail())
+                .phoneNumber(member.getPhoneNumber())
                 .build();
     }
 
     public static MemberDto from(MemberRequest memberRequest) {
         return MemberDto.builder()
                 .name(memberRequest.getName())
-                .age(memberRequest.getAge())
+                .idNumber(memberRequest.getIdNumber())
+                .feature(memberRequest.getFeature())
+                .email(memberRequest.getEmail())
+                .phoneNumber(memberRequest.getPhoneNumber())
                 .build();
     }
 }
