@@ -32,9 +32,15 @@ public class Member {
                 .feature(memberRequest.getFeature())
                 .email(memberRequest.getEmail())
                 .phoneNumber(memberRequest.getPhoneNumber())
-                .books(new ArrayList<>())
                 .build();
     }
+
+    @OneToMany(
+            mappedBy = "member",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Loan> loans = new ArrayList<>();
 
     public Member(MemberDto memberDto) {
         this.name = memberDto.getName();
@@ -42,7 +48,7 @@ public class Member {
         this.feature = memberDto.getFeature();
         this.email = memberDto.getEmail();
         this.phoneNumber = memberDto.getPhoneNumber();
-        this.books = new ArrayList<>();
+
     }
 
     public void update(MemberDto memberDto) {
@@ -52,11 +58,4 @@ public class Member {
         this.email = memberDto.getEmail();
         this.phoneNumber = memberDto.getPhoneNumber();
     }
-
-    @OneToMany(
-            mappedBy = "member",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<Book> books = new ArrayList<>();
 }

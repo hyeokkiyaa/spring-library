@@ -14,15 +14,19 @@ public class BookDto {
     private Long id;
     private String title;
     private String author;
-    private int year;
-    private Long memberId;
+    private String publisher;
+    private int publicationYear;
+    private String classification;
+    private String status;
 
     public static BookDto from(Book book) {
         return BookDto.builder()
-                .id(book.getId())
                 .title(book.getTitle())
                 .author(book.getAuthor())
-                .memberId(book.getMember().getId())
+                .publisher(book.getPublisher())
+                .publicationYear(book.getPublicationYear())
+                .classification(book.getClassification())
+                .status(book.getStatus())
                 .build();
     }
 
